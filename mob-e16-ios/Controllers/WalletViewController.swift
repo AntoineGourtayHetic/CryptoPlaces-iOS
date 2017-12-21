@@ -36,19 +36,7 @@ class WalletViewController: UIViewController {
         self.labelWalletNoKey.isHidden = true
         self.tableViewTransactions.isHidden = true
         getBalance()
-        
-        let unixtimeInterval = 1513804098
-        
-        var transaction = Transaction(value: 0.123456, received: true, adress: "1ArkBmF32gUXt5cEmc48nHhFBnY3c1yH1V", confirmations: 6, date: Date(timeIntervalSince1970: TimeInterval(unixtimeInterval)))
-        self.transactionList.append(transaction)
-        
-        var transaction2 = Transaction(value: 2.123456, received: true, adress: "1ArkBmF32gUXt5cEmc48nHhFBnY3c1yH1V", confirmations: 6, date: Date(timeIntervalSince1970: TimeInterval(unixtimeInterval)))
-        self.transactionList.append(transaction2)
-        
-        var transaction3 = Transaction(value: 4.123456, received: true, adress: "1ArkBmF32gUXt5cEmc48nHhFBnY3c1yH1V", confirmations: 6, date: Date(timeIntervalSince1970: TimeInterval(unixtimeInterval)))
-        self.transactionList.append(transaction3)
-        
-        print(transactionList)
+        getTransactions()
     }
     
     @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
@@ -60,6 +48,7 @@ class WalletViewController: UIViewController {
             self.labelUSDWallet.isHidden = false
             self.tableViewTransactions.isHidden = true
         case 1: // Transactions
+            self.tableViewTransactions.reloadData()
             self.labelWalletTitle.text = "Mes transactions"
             self.labelWalletBitcoin.isHidden = true
             self.labelEURWallet.isHidden = true
@@ -110,6 +99,24 @@ class WalletViewController: UIViewController {
             self.labelWalletBitcoin.text = "0 BTC"
             self.labelEURWallet.text = "0 EUR"
             self.labelUSDWallet.text = "0 USD"
+        }
+    }
+    
+    func getTransactions() {
+        if let pubKey = keychain.get("pubKey"){
+            Alamofire.request("https://blockexplorer.com/api/txs/?address=\(pubKey)").responseJSON { response in
+                if let data = response.result.value {
+                    let json = JSON(data)
+                    for (key,subJson):(String, JSON) in json["txs"] {
+                        var value = subJson["vin"][0]["value"]
+                        let adress = subJson["vin"][0]["addr"]
+                        var confirmations = subJson["confirmations"]
+                        let transaction = Transaction(value: value.floatValue, received: true, adress: "\(adress)", confirmations: Int(confirmations.floatValue), date: Date(timeIntervalSince1970: TimeInterval(subJson["time"].floatValue)))
+                        self.transactionList.append(transaction)
+                        print("\(key) added")
+                    }
+                }
+            }
         }
     }
 }

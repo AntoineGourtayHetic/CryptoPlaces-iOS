@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>467823884980-2hv2bdmgschp711b5u6mvfmjbdbcnu5s.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.467823884980-2hv2bdmgschp711b5u6mvfmjbdbcnu5s</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCptH9tHRO34tCJ_OCO_8VEAGdbM9g1V9s</string>
+	<key>GCM_SENDER_ID</key>
+	<string>467823884980</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>hetic.mob-e16-ios</string>
+	<key>PROJECT_ID</key>
+	<string>cryptoplace-f9358</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cryptoplace-f9358.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:467823884980:ios:581ea3a45f693038</string>
+	<key>DATABASE_URL</key>
+	<string>https://cryptoplace-f9358.firebaseio.com</string>
+</dict>
+</plist>

@@ -26,8 +26,14 @@ class TransactionTableViewCell: UITableViewCell {
     }
     
     func setup(withTheTransaction transaction: Transaction) {
-        self.dateTransaction.text = "\(transaction.date)"
-        self.amountTransaction.text = "\(transaction.value)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.locale = NSLocale.current
+        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        let strDate = dateFormatter.string(from: transaction.date)
+        
+        self.dateTransaction.text = "\(strDate)"
+        self.amountTransaction.text = "\(transaction.value) BTC"
     }
 
 }
