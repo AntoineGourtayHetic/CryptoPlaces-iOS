@@ -1,0 +1,6 @@
+framework module Pods_mob_e16_iosUITests {
+  umbrella header "Pods-mob-e16-iosUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

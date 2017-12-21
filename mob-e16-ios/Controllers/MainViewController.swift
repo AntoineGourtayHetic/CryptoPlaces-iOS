@@ -1,25 +1,23 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  mob-e16-ios
 //
-//  Created by Antoine Gourtay on 18/12/2017.
+//  Created by Arnaud Duboust on 18/12/2017.
 //  Copyright © 2017 Antoine Gourtay. All rights reserved.
 //
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class MainViewController: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
-
