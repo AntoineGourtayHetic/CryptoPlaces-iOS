@@ -18,6 +18,7 @@ target 'mob-e16-ios' do
   end
 
   pod 'Alamofire', '~> 4.5'
+  pod 'AlamofireImage', '~> 3.3'
   pod 'SwiftyJSON', '~> 4.0'
   pod 'KeychainSwift', '~> 10.0'
   pod 'Firebase/Core'

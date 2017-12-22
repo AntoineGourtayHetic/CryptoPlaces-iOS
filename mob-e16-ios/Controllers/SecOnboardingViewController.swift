@@ -23,8 +23,7 @@ class SecOnboardingViewController: UIViewController, UIPickerViewDelegate, UIPic
     override func viewDidLoad() {
         super.viewDidLoad()
         labelErrorOnboarding.isHidden = true
-
-        // Do any additional setup after loading the view.
+        buttonStartOnboarding.layer.cornerRadius = 7
     }
     
     @IBAction func buttonStartPressed(_ sender: Any) {
@@ -61,6 +60,11 @@ class SecOnboardingViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return cryptocurrencies[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let str = cryptocurrencies[row]
+        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
     }
 
     override func didReceiveMemoryWarning() {

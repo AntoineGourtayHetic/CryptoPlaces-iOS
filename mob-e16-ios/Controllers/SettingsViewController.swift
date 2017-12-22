@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import Firebase
 
 class SettingsViewController: UIViewController {
 
@@ -20,11 +21,13 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        Analytics.setUserProperty("BTC", forName: "favorite_cryptocurrency") // ONLY BTC AVAILABLE ATM
+        buttonValidate.layer.cornerRadius = 7
+        buttonClose.layer.cornerRadius = 7
         self.labelError.isHidden = true
         if let pubKey = keychain.get("pubKey"){
             fieldPubKey.text = "\(pubKey)"
         }
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +43,9 @@ class SettingsViewController: UIViewController {
     @IBAction func validateButtonPressed(_ sender: Any) {
         if fieldPubKey.text != "" {
             keychain.set(fieldPubKey.text!, forKey: "pubKey")
+            Analytics.logEvent("key_added", parameters: [
+                "key_currency": "BTC", // ONLY BTC AVAILABLE ATM
+                ])
             self.dismiss(animated: true, completion: { () -> Void in
             })
         }else{

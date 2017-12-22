@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import KeychainSwift
+import Firebase
 
 class ConverterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     @IBOutlet weak var firstPicker: UIPickerView!
@@ -19,6 +20,7 @@ class ConverterViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     @IBOutlet weak var labelEqual: UILabel!
     @IBOutlet weak var labelConverted: UILabel!
     @IBOutlet weak var labelCurrentBalance: UILabel!
+    @IBOutlet weak var buttonBuyBitcoin: UIButton!
     
     
     let keychain = KeychainSwift()
@@ -29,6 +31,7 @@ class ConverterViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        buttonBuyBitcoin.layer.cornerRadius = 7
         getBalance()
         fieldConverted.keyboardType = UIKeyboardType.numberPad
         fieldConverted.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -80,6 +83,14 @@ class ConverterViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
     }
     
+    @IBAction func buttonBuyBitcoinPressed(_ sender: Any) {
+        Analytics.logEvent("click_affiliate", parameters: [
+            "fromScreen": "Convertisseur"
+            ])
+        UIApplication.shared.openURL(NSURL(string: "https://www.coinbase.com/buy")! as URL)
+    }
+    
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if Float(self.fieldConverted.text!) != nil {
             callAPI()
@@ -110,6 +121,10 @@ class ConverterViewController: UIViewController, UIPickerViewDelegate, UIPickerV
                 self.labelConverted.text = "\(allConverted)"
             }
         }
+        Analytics.logEvent("currency_conversion", parameters: [
+            "converted_from": "\(from)",
+            "converted_to" : "\(to)"
+            ])
     }
     
     func getBalance() {

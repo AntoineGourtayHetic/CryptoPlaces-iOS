@@ -51,8 +51,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         let previousIndex = viewControllerIndex - 1
         
         guard previousIndex >= 0 else {
-            // Loop or not ?
-            // return orderedViewControllers.last
             return nil
         }
         
@@ -73,8 +71,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDelega
         let orderedViewControllersCount = orderedViewControllers.count
         
         guard orderedViewControllersCount != nextIndex else {
-            // Loop or not ?
-            // return orderedViewControllers.first
             return nil
         }
         

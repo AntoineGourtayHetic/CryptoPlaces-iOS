@@ -29,7 +29,7 @@ class TransactionTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
         dateFormatter.locale = NSLocale.current
-        dateFormatter.dateFormat = "dd-MM-yyyy HH:mm"
+        dateFormatter.dateFormat = "dd/MM/yyyy HH:mm"
         let strDate = dateFormatter.string(from: transaction.date)
         
         self.dateTransaction.text = "\(strDate)"

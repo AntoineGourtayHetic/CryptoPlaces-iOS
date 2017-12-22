@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import KeychainSwift
 import SwiftyJSON
+import Firebase
 
 class WalletViewController: UIViewController {
 
@@ -20,8 +21,14 @@ class WalletViewController: UIViewController {
     @IBOutlet weak var labelEURWallet: UILabel!
     @IBOutlet weak var labelUSDWallet: UILabel!
     @IBOutlet weak var labelWalletTitle: UILabel!
+    @IBOutlet weak var labelTransactionsTitle: UILabel!
     @IBOutlet weak var labelWalletNoKey: UILabel!
+    @IBOutlet weak var buttonBuyBitcoin: UIButton!
     @IBOutlet weak var tableViewTransactions: UITableView!
+    @IBOutlet weak var viewCurrencies: UIView!
+    @IBOutlet weak var viewLitecoin: UIView!
+    @IBOutlet weak var viewEthereum: UIView!
+    @IBOutlet weak var viewBitcoin: UIView!
     
     
     
@@ -33,6 +40,10 @@ class WalletViewController: UIViewController {
         
         tableViewTransactions.dataSource = self as? UITableViewDataSource
         tableViewTransactions.delegate = self as? UITableViewDelegate
+        buttonBuyBitcoin.layer.cornerRadius = 7
+        viewLitecoin.layer.cornerRadius = 7
+        viewEthereum.layer.cornerRadius = 7
+        viewBitcoin.layer.cornerRadius = 7
         self.labelWalletNoKey.isHidden = true
         self.tableViewTransactions.isHidden = true
         getBalance()
@@ -42,22 +53,36 @@ class WalletViewController: UIViewController {
     @IBAction func segmentedControlPressed(_ sender: UISegmentedControl) {
         switch segmentedControlWallet.selectedSegmentIndex {
         case 0: // Porte-feuilles
-            self.labelWalletTitle.text = "Mon porte-feuilles Bitcoin"
+            self.labelWalletTitle.isHidden = false
+            self.labelTransactionsTitle.isHidden = true
             self.labelWalletBitcoin.isHidden = false
             self.labelEURWallet.isHidden = false
             self.labelUSDWallet.isHidden = false
+            self.buttonBuyBitcoin.isHidden = false
             self.tableViewTransactions.isHidden = true
+            self.viewCurrencies.isHidden = false
         case 1: // Transactions
             self.tableViewTransactions.reloadData()
-            self.labelWalletTitle.text = "Mes transactions"
+            self.labelWalletTitle.isHidden = true
+            self.labelTransactionsTitle.isHidden = false
             self.labelWalletBitcoin.isHidden = true
             self.labelEURWallet.isHidden = true
             self.labelUSDWallet.isHidden = true
+            self.buttonBuyBitcoin.isHidden = true
             self.tableViewTransactions.isHidden = false
+            self.viewCurrencies.isHidden = true
         default:
             break
         }
     }
+    
+    @IBAction func buttonBuyBitcoinPressed(_ sender: Any) {
+        Analytics.logEvent("click_affiliate", parameters: [
+            "fromScreen": "Porte-feuilles"
+            ])
+        UIApplication.shared.openURL(NSURL(string: "https://www.coinbase.com/buy")! as URL)
+    }
+    
     
 
     override func didReceiveMemoryWarning() {
@@ -107,13 +132,12 @@ class WalletViewController: UIViewController {
             Alamofire.request("https://blockexplorer.com/api/txs/?address=\(pubKey)").responseJSON { response in
                 if let data = response.result.value {
                     let json = JSON(data)
-                    for (key,subJson):(String, JSON) in json["txs"] {
+                    for (_,subJson):(String, JSON) in json["txs"] {
                         var value = subJson["vin"][0]["value"]
                         let adress = subJson["vin"][0]["addr"]
                         var confirmations = subJson["confirmations"]
                         let transaction = Transaction(value: value.floatValue, received: true, adress: "\(adress)", confirmations: Int(confirmations.floatValue), date: Date(timeIntervalSince1970: TimeInterval(subJson["time"].floatValue)))
                         self.transactionList.append(transaction)
-                        print("\(key) added")
                     }
                 }
             }
@@ -148,23 +172,10 @@ extension WalletViewController : UITableViewDataSource {
 extension WalletViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Deselection la cellule car ce n'est pas automatique
         tableView.deselectRow(at: indexPath, animated: false)
         
         let index = indexPath.row
-        let transaction = self.transactionList[index]
-        
-        
-        // Crée un alerte controlleur vide
-        // let alertController = UIAlertController(title: "Tap sur serie", message: serie.title, preferredStyle: .alert)
-        
-        // Ajout de l'action cancel, pour pouvoir fermer la popup
-        // let actionCancel = UIAlertAction(title: "Cancel", style: .cancel)
-        // alertController.addAction(actionCancel)
-        
-        // Affiche la popup
-        // self.present(alertController, animated: true)
-        
+        _ = self.transactionList[index]        
     }
     
 }

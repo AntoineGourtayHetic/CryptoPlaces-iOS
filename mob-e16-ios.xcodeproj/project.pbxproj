@@ -15,6 +15,7 @@
 		3030DC341FE7B6EB0017B6B5 /* mob_e16_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3030DC331FE7B6EB0017B6B5 /* mob_e16_iosUITests.swift */; };
 		4B9A31EA17481DDABFA39A4D /* Pods_mob_e16_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B010224E6751DAF17A86849 /* Pods_mob_e16_ios.framework */; };
 		512DDEA31FEBF209003ED7A9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 512DDEA21FEBF208003ED7A9 /* GoogleService-Info.plist */; };
+		512DDEA51FEC12D9003ED7A9 /* NewPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512DDEA41FEC12D9003ED7A9 /* NewPin.swift */; };
 		5135585A1FE93892004A2085 /* PinViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513558591FE93892004A2085 /* PinViews.swift */; };
 		5136B8441FE887BF001A7929 /* pins.json in Resources */ = {isa = PBXBuildFile; fileRef = 5136B8431FE887BF001A7929 /* pins.json */; };
 		5166D6A01FE9AE5400B1E668 /* ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5166D69F1FE9AE5400B1E668 /* ConverterViewController.swift */; };
@@ -64,6 +65,7 @@
 		3030DC351FE7B6EB0017B6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48EB9A9C66F386B8B4445095 /* Pods_mob_e16_iosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_mob_e16_iosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		512DDEA21FEBF208003ED7A9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		512DDEA41FEC12D9003ED7A9 /* NewPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPin.swift; sourceTree = "<group>"; };
 		513558591FE93892004A2085 /* PinViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViews.swift; sourceTree = "<group>"; };
 		5136B8431FE887BF001A7929 /* pins.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = pins.json; sourceTree = "<group>"; };
 		5166D69F1FE9AE5400B1E668 /* ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 			children = (
 				51A4D5051FE83E0100036E31 /* Pin.swift */,
 				51A8C7381FEB261B0056DBE0 /* Transaction.swift */,
+				512DDEA41FEC12D9003ED7A9 /* NewPin.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-mob-e16-ios/Pods-mob-e16-ios-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -418,6 +422,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -540,6 +545,7 @@
 				51A4D5061FE83E0100036E31 /* Pin.swift in Sources */,
 				5166D6A01FE9AE5400B1E668 /* ConverterViewController.swift in Sources */,
 				51AFF9ED1FEBEEE800089025 /* SettingsViewController.swift in Sources */,
+				512DDEA51FEC12D9003ED7A9 /* NewPin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
